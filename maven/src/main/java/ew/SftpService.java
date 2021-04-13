@@ -72,46 +72,42 @@ public class SftpService {
     }
 
     public void fileDownload(){
-        BufferedInputStream bis = null; 
-        InputStreamReader isr = null; 
-        OutputStreamWriter osw = null; 
-        OutputStream outStream = null; 
+        InputStream is = null; 
+        FileOutputStream out = null;
+        String date = "210322";
         
+        // 파일 접근
         try { 
             channelSftp.cd("/kiccftp/EXIMBAY001"); 
-            bis = new BufferedInputStream(channelSftp.get("EXIMBAY001-CRANS.210322"));
-            isr = new InputStreamReader(channelSftp.get("EXIMBAY001-CRANS.210322"),"UTF-8");
+
+            // 거래대사
+            // is = channelSftp.get("EXIMBAY001-CRANS."+date);
+            // 국세청 반송 대사
+            is = channelSftp.get("EXIMBAY001-ERO."+date);
         } catch (SftpException e) {
             e.printStackTrace(); 
         } catch ( Exception e){
             e.printStackTrace();
         }
         
-        byte[] buffer = new byte[1024];
-        String fileName = "TEST";
+        // 읽은 데이터 파일 처리
         try {
 
+            /// 파일 생성
+            // 국세청 반송 대사
+            File newFile = new File("." + "/log/국세청 반송 대사 "+date+".txt");
+            // 현금영수증 대사
+            // File newFile = new File("." + "/log/현금영수증 대사 "+date+".txt");
 
-            File newFile = new File("." + "/TEST.txt");
+            out = new FileOutputStream(newFile);
 
-            // Download file
-            Writer os = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(newFile),"UTF-8"));
-            // BufferedOutputStream bos = new BufferedOutputStream(bis);
-            os.write("가나다라마바사");
-            os.close();
+            int readCount = 0;
+            while((readCount = is.read())>0){
+                out.write(readCount);
+            }
+            is.close();
+            out.close();
 
-            // int readCount = 0;
-            // while((readCount = isr.read())>0){
-            //     bos.write(readCount);
-            // }
-            // bis.close();
-            // bos.close();
-            // int readCount;
-            // while ((readCount = bis.read(buffer)) > 0) {
-            //     bos.write(buffer, 0, readCount);
-            // }
-            // bis.close();
-            // bos.close();
 
         } catch (Exception e) {
             e.printStackTrace();
