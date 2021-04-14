@@ -28,7 +28,8 @@ public class SftpService {
     private Channel channel = null; 
     private ChannelSftp channelSftp = null;
 
-    private static final String host = "203.233.72.57";
+    // private static final String host = "203.233.72.57"; 테스트서버
+    private static final String host = "203.233.72.11";
     private static final String userName = "EXIMBAY001";
     private static final String password = "M5%Aur4e";
     private static final int port = 22;
@@ -74,16 +75,17 @@ public class SftpService {
     public void fileDownload(){
         InputStream is = null; 
         FileOutputStream out = null;
-        String date = "210322";
+        String date = "210331";
         
         // 파일 접근
         try { 
+            channelSftp.setFilenameEncoding("UTF-8");
             channelSftp.cd("/kiccftp/EXIMBAY001"); 
 
             // 거래대사
-            // is = channelSftp.get("EXIMBAY001-CRANS."+date);
+            is = channelSftp.get("EXIMBAY001-CRANS."+date);
             // 국세청 반송 대사
-            is = channelSftp.get("EXIMBAY001-ERO."+date);
+            // is = channelSftp.get("EXIMBAY001-ERO."+date);
         } catch (SftpException e) {
             e.printStackTrace(); 
         } catch ( Exception e){
@@ -95,9 +97,9 @@ public class SftpService {
 
             /// 파일 생성
             // 국세청 반송 대사
-            File newFile = new File("." + "/log/국세청 반송 대사 "+date+".txt");
+            // File newFile = new File("." + "/log/국세청 반송 대사 "+date+".txt");
             // 현금영수증 대사
-            // File newFile = new File("." + "/log/현금영수증 대사 "+date+".txt");
+            File newFile = new File("." + "/log/현금영수증 대사 "+date+".txt");
 
             out = new FileOutputStream(newFile);
 
