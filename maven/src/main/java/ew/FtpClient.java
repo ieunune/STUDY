@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 
-public class SftpServiceApache{
+public class FtpClient{
 
 	/// Fields
 	private static final Boolean isLive = false;
 
 	/// Constructor
-	public SftpServiceApache(){
+	public FtpClient(){
 		System.out.println("CREATE SFTP SERVICE APACHE");
 		getFTP();
 	}
@@ -24,11 +24,6 @@ public class SftpServiceApache{
 
 		// FTP 통신 후 받아올 파일 리스트
 		ArrayList<String> arrList = new ArrayList<String>();
-
-		File rootFile = null;
-		String filePath = "";
-		
-		InputStream is = null;
 		
 		String sftpIP = "";
 		if(isLive) sftpIP = "203.233.72.11";
@@ -38,8 +33,7 @@ public class SftpServiceApache{
 		String sftpID = "EXIMBAY001";
 		String sftpPW = "M5%Aur4e";
 		String serverFilePath = "/kiccftp/EXIMBAY001";
-		String fileName = "EXIMBAY001-CRANS.20210322";
-
+		
 		FTPClient ftp = new FTPClient();
 		FTPFile[] ftpFiles = null;
 		FileOutputStream fos = null;
