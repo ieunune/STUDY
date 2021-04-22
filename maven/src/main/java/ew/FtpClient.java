@@ -26,13 +26,13 @@ public class FtpClient{
 		ArrayList<String> arrList = new ArrayList<String>();
 		
 		String sftpIP = "";
-		if(isLive) sftpIP = "203.233.72.11";
-		else sftpIP = "203.233.72.57";
+		if(isLive) sftpIP = "";
+		else sftpIP = "";
 
 		int sftpPort = 22;
-		String sftpID = "EXIMBAY001";
-		String sftpPW = "M5%Aur4e";
-		String serverFilePath = "/kiccftp/EXIMBAY001";
+		String sftpID = "";
+		String sftpPW = "";
+		String serverFilePath = "";
 		
 		FTPClient ftp = new FTPClient();
 		FTPFile[] ftpFiles = null;

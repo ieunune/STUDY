@@ -22,10 +22,9 @@ public class SftpClient {
     private Channel channel = null; 
     private ChannelSftp channelSftp = null;
 
-    private static final String host = "203.233.72.57"; //테스트서버
-    // private static final String host = "203.233.72.11"; //운영서버
-    private static final String userName = "EXIMBAY001";
-    private static final String password = "M5%Aur4e";
+    private static final String host = ""; 
+    private static final String userName = "";
+    private static final String password = "";
     private static final int port = 22;
 
     /// Constructor
@@ -73,8 +72,8 @@ public class SftpClient {
     public void fileDownload(){
         InputStream is = null; 
         FileOutputStream out = null;
-        String date = "210322";
-        String path = "/kiccftp/EXIMBAY001";
+        String date = "210330";
+        String path = "";
         
         try { 
 
